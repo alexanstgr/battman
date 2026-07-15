@@ -26,13 +26,13 @@ const colors = {
   destructiveForeground: "#ff0101",
 
   border: "#05050517",
-  input: "#0a0f29",
+  input: "#ececec",
 
   charged: "#00ce89",
   charging: "#ff9500",
   discharged: "#ff2d2d",
 
-  surfaceElevated: "#0b1626f4",
+  surfaceElevated: "#fffffff4",
 
   tabBar: "#ffffff",
 
