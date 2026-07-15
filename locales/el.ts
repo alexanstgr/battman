@@ -6,8 +6,8 @@ export const el: Translations = {
   navSettings: "Ρυθμίσεις",
 
   headerTitle: "GEAR BATTERIES",
-  allDevices: (n) => `${n} ${n === 1 ? "device" : "Συσκευές"}`,
-  allBatteries: (n) => `${n} ${n === 1 ? "battery" : "Μπαταρίες"}`,
+  allDevices: (n) => `${n} ${n === 1 ? "Συσκευή" : "Συσκευές"}`,
+  allBatteries: (n) => `${n} ${n === 1 ? "Μπαταρία" : "Μπαταρίες"}`,
   ready: "Έτοιμες",
   charging: "Φορτίζουν",
   low: "Άδειες",
@@ -43,7 +43,7 @@ export const el: Translations = {
   deviceNamePlaceholder: "π.χ. Sony A7 IV",
   categoryLabel: "Κατηγορία",
   saveChanges: "Αποθήκευση Αλλαγών",
-  addDevice: "Νέα Συσκευή",
+  addDevice: "Προσθήκη Νέας Συσκευής",
 
   addBattery: "Νέα Μπαταρία",
   editBattery: "Επεξεργασία Μπαταρίας",

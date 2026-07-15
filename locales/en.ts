@@ -42,7 +42,7 @@ export const en: Translations = {
   deviceNamePlaceholder: "e.g. Sony A7 IV",
   categoryLabel: "Category",
   saveChanges: "Save Changes",
-  addDevice: "Add Device",
+  addDevice: "Add New Device",
 
   addBattery: "Add Battery",
   editBattery: "Edit Battery",
