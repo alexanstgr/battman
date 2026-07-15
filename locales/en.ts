@@ -1,0 +1,90 @@
+import { Translations } from "./types";
+
+export const en: Translations = {
+  navDevices: "Devices",
+  navStats: "Stats",
+  navSettings: "Settings",
+
+  headerTitle: "GEAR BATTERIES",
+  allDevices: (n) => `${n} ${n === 1 ? "device" : "devices"}`,
+  allBatteries: (n) => `${n} ${n === 1 ? "battery" : "batteries"}`,
+  ready: "Ready",
+  charging: "Charging",
+  low: "Low",
+  searchPlaceholder: "Search devices...",
+  filterAll: "All",
+  filterCameras: "Cameras",
+  filterLights: "Lights",
+  filterAudio: "Audio",
+  filterDrones: "Drones",
+  filterOther: "Other",
+
+  statusCharged: "Charged",
+  statusCharging: "Charging",
+  statusDischarged: "Discharged",
+
+  emptyDevicesTitle: "No devices yet",
+  emptyDevicesSubtitle: "Tap + to add your first device",
+  emptySearchTitle: "No results found",
+  emptySearchSubtitle: "Try a different search term",
+  emptyBatteriesTitle: "No batteries yet",
+  emptyBatteriesSubtitle: "Tap + to add a battery for this device",
+
+  editDevice: "Edit Device",
+  deleteDevice: "Delete Device",
+  deleteBattery: "Delete Battery",
+  deleteDeviceConfirm: (name) => `Delete "${name}" and all its batteries?`,
+  deleteCancel: "Cancel",
+  deleteConfirm: "Delete",
+
+  newDevice: "New Device",
+  deviceNameLabel: "Device Name",
+  deviceNamePlaceholder: "e.g. Sony A7 IV",
+  categoryLabel: "Category",
+  saveChanges: "Save Changes",
+  addDevice: "Add Device",
+
+  addBattery: "Add Battery",
+  editBattery: "Edit Battery",
+  batteryNameLabel: "Battery Name",
+  batteryNamePlaceholder: "e.g. NP-FZ100 #1",
+  statusLabel: "Status",
+
+
+
+  batteriesCount: (n) => `${n} ${n === 1 ? "battery" : "batteries"}`,
+  deviceCategoryCount: (cat, n) =>
+    `${cat} · ${n} ${n === 1 ? "battery" : "batteries"}`,
+
+  statsTitle: "BATTERY STATS",
+  statsSubtitle: "Gear readiness overview",
+  statDevices: "Devices",
+  statBatteries: "Batteries",
+  statReady: "Ready",
+  statNeedsCharge: "Needs Charge",
+  gearReady: "GEAR READY",
+  statusBreakdown: "STATUS BREAKDOWN",
+  noBatteriesTracked: "No batteries tracked yet",
+  byCategory: "BY CATEGORY",
+  catDeviceCount: (n) => `${n} ${n === 1 ? "device" : "devices"}`,
+  catBatteryCount: (n) => `${n} ${n === 1 ? "batt." : "batt."}`,
+
+  settingsTitle: "APP SETTINGS",
+  appearance: "APPEARANCE",
+  currentTheme: (s) => `Using ${s} mode`,
+  languageSection: "LANGUAGE",
+  langEnglish: "English",
+  langGreek: "Ελληνικά",
+  about: "ABOUT",
+  developerHeadline: "Designed and developed by",
+  developerName: "Alexander Anastasiadis",
+  appName: "Battman",
+  appTagline:
+    "The ultimate device and battery management solution for professionals.",
+  appVersion: "v1.0.0",
+  tips: "TIPS",
+  tip1: "Swipe right on any item to delete it",
+  tip2: "Swipe left on any item to edit it",
+  tip3: "Tap a status indicator to cycle it",
+  tip4: "Pull down to refresh any list",
+};
