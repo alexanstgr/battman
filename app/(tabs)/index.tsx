@@ -141,15 +141,6 @@ export default function DevicesScreen() {
             <View style={styles.header}>
               <View>
                 <Logo />
-
-                <Text
-                  style={[
-                    styles.appSub,
-                    { color: themeColors.mutedForeground },
-                  ]}
-                >
-                  {t.allDevices(devices.length)} · {t.allBatteries(totalBatt)}
-                </Text>
               </View>
               <View style={styles.headerActions}>
                 <TouchableOpacity
