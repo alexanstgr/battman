@@ -1,59 +1,88 @@
-import { Feather } from '@expo/vector-icons';
-import React, { useRef } from 'react';
-import { Animated, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import colors from '@/constants/colors';
+import React, { useRef } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { Ionicons } from "@react-native-vector-icons/ionicons";
+
 interface SwipeableRowProps {
   children: React.ReactNode;
   onDelete: () => void;
   onEdit: () => void;
 }
 
-export function SwipeableRow({ children, onDelete, onEdit }: SwipeableRowProps) {
-  const swipeableRef = useRef<Swipeable>(null);
+export function SwipeableRow({
+  children,
+  onDelete,
+  onEdit,
+}: SwipeableRowProps) {
+  const swipeableRef =
+    useRef<React.ComponentRef<typeof ReanimatedSwipeable>>(null);
 
   const close = () => swipeableRef.current?.close();
 
-  const renderLeftActions = (progress: Animated.AnimatedInterpolation<number>) => {
-    const trans = progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-80, 0],
-    });
+  const renderLeftActions = (
+    progress: SharedValue<number>,
+    _translation: SharedValue<number>,
+  ) => {
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [
+        {
+          translateX: interpolate(progress.value, [0, 1], [-80, 0]),
+        },
+      ],
+    }));
+
     return (
-      <Animated.View style={[styles.actionContainer, { transform: [{ translateX: trans }] }]}>
-        <TouchableOpacity
-          style={[styles.action, styles.deleteAction, { backgroundColor: colors.destructive }]}
-          onPress={() => { close(); setTimeout(onDelete, 200); }}
-          activeOpacity={0.8}
+      <Animated.View style={[styles.actionContainer, animatedStyle]}>
+        <RectButton
+          style={[styles.action, styles.deleteAction]}
+          onPress={() => {
+            close();
+            setTimeout(onDelete, 200);
+          }}
         >
-          <Feather name="trash-2" size={20} color="#fff" />
-          <Text style={styles.actionText}>Delete</Text>
-        </TouchableOpacity>
+          <Ionicons name="trash" color="#fd0000" size={25} />
+        </RectButton>
       </Animated.View>
     );
   };
 
-  const renderRightActions = (progress: Animated.AnimatedInterpolation<number>) => {
-    const trans = progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [80, 0],
-    });
+  const renderRightActions = (
+    progress: SharedValue<number>,
+    _translation: SharedValue<number>,
+  ) => {
+    const animatedStyle = useAnimatedStyle(() => ({
+      transform: [
+        {
+          translateX: interpolate(progress.value, [0, 1], [80, 0]),
+        },
+      ],
+    }));
+
     return (
-      <Animated.View style={[styles.actionContainer, { transform: [{ translateX: trans }] }]}>
+      <Animated.View style={[styles.actionContainer, animatedStyle]}>
         <TouchableOpacity
-          style={[styles.action, styles.editAction, { backgroundColor: colors.primary }]}
-          onPress={() => { close(); setTimeout(onEdit, 200); }}
+          style={[styles.action, styles.editAction]}
           activeOpacity={0.8}
+          onPress={() => {
+            close();
+            setTimeout(onEdit, 200);
+          }}
         >
-          <Feather name="edit-2" size={20} color="#fff" />
-          <Text style={styles.actionText}>Edit</Text>
+          <Ionicons name="pencil" color="#000000" size={25} />
         </TouchableOpacity>
       </Animated.View>
     );
   };
 
   return (
-    <Swipeable
+    <ReanimatedSwipeable
       ref={swipeableRef}
       renderLeftActions={renderLeftActions}
       renderRightActions={renderRightActions}
@@ -64,30 +93,26 @@ export function SwipeableRow({ children, onDelete, onEdit }: SwipeableRowProps) 
       overshootRight={false}
     >
       {children}
-    </Swipeable>
+    </ReanimatedSwipeable>
   );
 }
 
 const styles = StyleSheet.create({
   actionContainer: {
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   action: {
-    width: 80,
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 4,
+    width: 60,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   deleteAction: {
-    borderRadius: 0,
+    borderRadius: 15,
+    marginRight: 5,
   },
   editAction: {
-    borderRadius: 0,
-  },
-  actionText: {
-    color: '#fff',
-    fontSize: 11,
-    fontFamily: 'Inter_600SemiBold',
+    borderRadius: 15,
+    marginLeft: 5,
   },
 });
