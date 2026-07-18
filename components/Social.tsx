@@ -1,12 +1,6 @@
 import { TouchableOpacity, StyleSheet, View, Linking } from "react-native";
-
-import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
-
 import Octicons from "@expo/vector-icons/Octicons";
 type ZocialName = React.ComponentProps<typeof Octicons>["name"];
-
-
-import colors from "@/constants/colors";
 
 
 interface Props {
