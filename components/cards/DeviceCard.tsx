@@ -6,18 +6,8 @@ import { Device, Battery } from "@/types";
 import themeColors from "@/constants/colors";
 import { getCategoryLabel } from "../CategoryIcon";
 import { CategoryIcon } from "../CategoryIcon";
-
-import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
-
 import BatteryLevel from "../BatteryLevel";
-
-const cardShadow = {
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.012,
-  shadowRadius: 5,
-  elevation: 2,
-};
 
 export default function DeviceCard({
   device,
@@ -43,7 +33,7 @@ export default function DeviceCard({
       <Pressable
         style={({ pressed }) => [
           styles.deviceRow,
-          { backgroundColor: colors.card, shadowColor: colors.shadow },
+          { backgroundColor: colors.card },
           pressed && { opacity: 0.85 },
         ]}
         onPress={() => router.push(`/device/${device.id}`)}
@@ -122,7 +112,8 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
-    ...cardShadow,
+    borderWidth: themeColors.cardBorderWidth,
+    borderColor: themeColors.cardBorderColor,
   },
 
   rowPct: {

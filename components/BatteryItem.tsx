@@ -74,7 +74,7 @@ export function BatteryItem({ battery, onEdit }: BatteryItemProps) {
         onDelete={handleDeleteRequest}
         onEdit={() => onEdit(battery)}
       >
-        <View style={[styles.item, { backgroundColor: colors.surface }]}>
+        <View style={[styles.item]}>
           <Pressable onPress={handleCycleStatus} style={styles.statusPressable}>
             <View
               style={[styles.statusBar, { backgroundColor: statusColor }]}
