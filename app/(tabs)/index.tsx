@@ -448,6 +448,8 @@ const styles = StyleSheet.create({
 
   heroCard: {
     backgroundColor: themeColors.card,
+    borderColor: themeColors.cardBorderColor,
+    borderWidth: themeColors.cardBorderWidth,
     borderRadius: 18,
     marginBottom: 14,
   },
