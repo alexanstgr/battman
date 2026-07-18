@@ -80,7 +80,7 @@ export const en: Translations = {
   developerName: "Alexander Anastasiadis",
   appName: "Battman",
   appTagline:
-    "The ultimate device and battery management solution for professionals.",
+    "The ultimate device and battery management solution for professionals and hobbyists",
   appVersion: "v1.0.0",
   tips: "TIPS",
   tip1: "Swipe right on any item to delete it",

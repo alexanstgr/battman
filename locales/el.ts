@@ -19,9 +19,9 @@ export const el: Translations = {
   filterDrones: "Drones",
   filterOther: "Άλλα",
 
-  statusCharged: "ΦΟΡΤΙΣΜΕΝΕΣ",
+  statusCharged: "ΦΟΡΤΙΣΜΕΝΗ",
   statusCharging: "ΣΕ ΦΟΡΤΙΣΗ",
-  statusDischarged: "ΑΦΟΡΤΙΣΤΕΣ",
+  statusDischarged: "ΑΦΟΡΤΙΣΤΗ",
 
   emptyDevicesTitle: "Δεν υπάρχουν συσκευές ακόμα",
   emptyDevicesSubtitle: "Πάτα το + για να προσθέσεις συσκευή",
@@ -36,7 +36,7 @@ export const el: Translations = {
 
   deleteDeviceConfirm: (name) => `Διαγραφή "${name}" και των μπαταριών ?`,
   deleteCancel: "Ακυρωση",
-  deleteConfirm: "Διαγραφη",
+  deleteConfirm: "Διαγραφή",
 
   newDevice: "Νέα Συσκευή",
   deviceNameLabel: "Όνομα Συσκευής",
@@ -79,7 +79,7 @@ export const el: Translations = {
   developerName: "Αλέξανδρος Αναστασιάδης",
   appName: "Battman",
   appTagline:
-    "Ο απόλυτος διαχειριστής συσκευών και μπαταριών για επαγγελματίες.",
+    "Ο απόλυτος διαχειριστής συσκευών και μπαταριών για επαγγελματίες αλλά και ερασιτέχνες.",
   appVersion: "v1.0.0",
   tips: "ΣΥΜΒΟΥΛΕΣ",
   tip1: "Σύρε προς τα δεξιά σε ένα οποιοδήποτε στοιχείο για να το διαγράψεις.",
