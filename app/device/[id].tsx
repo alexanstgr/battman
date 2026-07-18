@@ -4,7 +4,6 @@ import { router, useLocalSearchParams } from "expo-router";
 
 import { useState } from "react";
 import {
-  Alert,
   FlatList,
   Platform,
   Pressable,
@@ -15,10 +14,11 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import YesNoModal from "@/components/modals/YesNoModal";
 import { AddEditBatterySheet } from "@/components/AddEditBatterySheet";
 import { AddEditDeviceSheet } from "@/components/AddEditDeviceSheet";
 import { BatteryItem } from "@/components/BatteryItem";
-import { CategoryIcon, getCategoryLabel } from "@/components/CategoryIcon";
+import { getCategoryLabel } from "@/components/CategoryIcon";
 import { EmptyState } from "@/components/EmptyState";
 import { FAB } from "@/components/FAB";
 import { useBattery } from "@/context/BatteryContext";
@@ -32,6 +32,8 @@ export default function DeviceDetailScreen() {
   const insets = useSafeAreaInsets();
   const t = useTranslation();
   const { getDevice, getBatteriesForDevice, deleteDevice } = useBattery();
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [batterySheetVisible, setBatterySheetVisible] = useState(false);
   const [deviceSheetVisible, setDeviceSheetVisible] = useState(false);
@@ -49,21 +51,18 @@ export default function DeviceDetailScreen() {
 
   const readyPct = total > 0 ? Math.round((charged / total) * 100) : 0;
 
-  const handleDeleteDevice = () => {
-    Alert.alert(t.deleteDevice, t.deleteDeviceConfirm(device?.name ?? ""), [
-      { text: t.deleteCancel, style: "cancel" },
-      {
-        text: t.deleteConfirm,
-        style: "destructive",
-        onPress: async () => {
-          await Haptics.notificationAsync(
-            Haptics.NotificationFeedbackType.Success,
-          );
-          await deleteDevice(id);
-          router.back();
-        },
-      },
-    ]);
+  const handleDeleteRequest = () => {
+    setModalVisible(true);
+  };
+
+  const confirmDelete = async () => {
+    setModalVisible(false);
+
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+    await deleteDevice(id);
+
+    router.back();
   };
 
   const onRefresh = async () => {
@@ -102,18 +101,13 @@ export default function DeviceDetailScreen() {
             >
               <Feather name="edit" size={22} color={colors.mutedForeground} />
             </Pressable>
-            <Pressable onPress={handleDeleteDevice} style={styles.actionBtn}>
+            <Pressable onPress={handleDeleteRequest} style={styles.actionBtn}>
               <Feather name="trash-2" size={22} color={colors.destructive} />
             </Pressable>
           </View>
         </View>
 
         <View style={styles.deviceTitleRow}>
-          <CategoryIcon
-            category={device.category}
-            size={16}
-            showBackground={false}
-          />
           <View style={styles.deviceTitleBlock}>
             <Text style={[styles.deviceName, { color: colors.foreground }]}>
               {device.name}
@@ -194,6 +188,16 @@ export default function DeviceDetailScreen() {
 
         <View style={[styles.divider, { backgroundColor: colors.border }]} />
       </View>
+
+      <YesNoModal
+        visible={modalVisible}
+        title={t.deleteDevice}
+        message={t.deleteDeviceConfirm(device.name)}
+        cancelText={t.deleteCancel}
+        confirmText={t.deleteConfirm}
+        onCancel={() => setModalVisible(false)}
+        onConfirm={confirmDelete}
+      />
 
       <FlatList
         data={batteries}
@@ -300,11 +304,11 @@ const styles = StyleSheet.create({
   },
   statNum: {
     fontSize: 26,
-    fontWeight: "800",
-    fontFamily: "Inter_700Bold",
+    fontWeight: 700,
+    fontFamily: "Inter_500",
     letterSpacing: -0.5,
   },
-  statLabel: { fontSize: 10, fontWeight: "800", letterSpacing: 1.5 },
+  statLabel: { fontSize: 10, fontWeight: "600", letterSpacing: 1.5 },
   progressBar: {
     height: 3,
     borderRadius: 2,
