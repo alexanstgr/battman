@@ -25,8 +25,8 @@ export default function StatCard({
       </Text>
 
       <View style={styles.iconbox}>
-        <View>
-          <Ionicons name={icon} color={colors.primary} size={22} />
+        <View style={{opacity:0.3}}>
+          <Ionicons name={icon} color={colors.muted} size={32} />
         </View>
       </View>
     </View>
@@ -41,8 +41,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:'rgb(236, 236, 236)',
-    borderRadius: colors.radius,
     top: "20%",
     bottom: "80%",
     right: 20,
