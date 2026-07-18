@@ -88,12 +88,7 @@ export default function StatsScreen() {
       showsVerticalScrollIndicator={false}
     >
       {/* HERO readiness */}
-      <View
-        style={[
-          styles.heroCard,
-          { backgroundColor: colors.card },
-        ]}
-      >
+      <View style={[styles.heroCard, { backgroundColor: colors.card }]}>
         <View style={[styles.heroBorder]} />
         <View style={styles.heroInner}>
           <Text
@@ -148,10 +143,7 @@ export default function StatsScreen() {
         ].map((item) => (
           <View
             key={item.label}
-            style={[
-              styles.statBox,
-              { backgroundColor: colors.card },
-            ]}
+            style={[styles.statBox, { backgroundColor: colors.card }]}
           >
             <Text style={[styles.statNum, { color: item.color }]}>
               {item.value}
@@ -164,12 +156,7 @@ export default function StatsScreen() {
       </View>
 
       {/* STATUS BREAKDOWN */}
-      <View
-        style={[
-          styles.section,
-          { backgroundColor: colors.card},
-        ]}
-      >
+      <View style={[styles.section, { backgroundColor: colors.card }]}>
         <View style={[styles.sectionAccent]} />
         <View style={styles.sectionContent}>
           <Text
@@ -208,12 +195,7 @@ export default function StatsScreen() {
 
       {/* BY CATEGORY */}
       {stats.byCat.length > 0 && (
-        <View
-          style={[
-            styles.section,
-            { backgroundColor: colors.card},
-          ]}
-        >
+        <View style={[styles.section, { backgroundColor: colors.card }]}>
           <View style={[styles.sectionAccent]} />
           <View style={styles.sectionContent}>
             <Text
@@ -297,21 +279,11 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   content: { paddingHorizontal: 20, gap: 16 },
   headerBlock: { gap: -4 },
-  headerTitle1: {
-    fontSize: 42,
-    fontFamily: "Inter_700Bold",
-    letterSpacing: -1.5,
-    lineHeight: 42,
-  },
-  headerTitle2: {
-    fontSize: 18,
-    fontFamily: "Inter_700Bold",
-    letterSpacing: 3,
-    lineHeight: 24,
-  },
+
   heroCard: {
     borderRadius: 14,
-    borderWidth: 0,
+    borderColor: colors.cardBorderColor,
+    borderWidth: colors.cardBorderWidth,
     overflow: "hidden",
   },
   heroBorder: { height: 3 },
@@ -335,15 +307,17 @@ const styles = StyleSheet.create({
   statBox: {
     width: "48%",
     borderRadius: 12,
+    borderColor: colors.cardBorderColor,
+    borderWidth: colors.cardBorderWidth,
     padding: 16,
-    borderWidth: 0,
     gap: 6,
   },
   statNum: { fontSize: 36, fontFamily: "Inter_700Bold", letterSpacing: -1 },
   statLabel: { fontSize: 9, fontFamily: "Inter_700Bold", letterSpacing: 1.5 },
   section: {
     borderRadius: 12,
-    borderWidth: 0,
+    borderColor: colors.cardBorderColor,
+    borderWidth: colors.cardBorderWidth,
     overflow: "hidden",
     flexDirection: "row",
   },

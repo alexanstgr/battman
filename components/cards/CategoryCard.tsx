@@ -36,9 +36,11 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
         styles.catTile,
         {
           backgroundColor: themeColors.card,
-          shadowColor: themeColors.shadow,
-          borderColor: selected ? themeColors.primary : "transparent",
-          borderWidth: 1.5,
+
+          borderColor: selected
+            ? themeColors.primary
+            : themeColors.cardBorderColor,
+          borderWidth: themeColors.cardBorderWidth,
         },
       ]}
     >

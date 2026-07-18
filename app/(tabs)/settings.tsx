@@ -226,7 +226,8 @@ const styles = StyleSheet.create({
   },
   aboutCard: {
     borderRadius: 14,
-    borderWidth: 0,
+    borderColor: colors.cardBorderColor,
+    borderWidth: colors.cardBorderWidth,
     overflow: "hidden",
     flexDirection: "row",
   },
@@ -241,6 +242,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.card,
     padding: 12,
     borderRadius: 12,
+    borderColor: colors.cardBorderColor,
+    borderWidth: colors.cardBorderWidth,
   },
   tip: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
   tipNum: {
