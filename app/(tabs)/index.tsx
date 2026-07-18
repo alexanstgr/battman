@@ -2,8 +2,8 @@ import { Feather } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import CategoryCard from "@/components/cards/CategoryCard";
 import { useMemo, useState } from "react";
+import YesNoModal from "@/components/modals/YesNoModal";
 import {
-  Alert,
   FlatList,
   Platform,
   RefreshControl,
@@ -46,6 +46,8 @@ export default function DevicesScreen() {
   const [filter, setFilter] = useState<FilterValue>("all");
   const [search, setSearch] = useState("");
   const [searchVisible, setSearchVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [deviceToDelete, setDeviceToDelete] = useState<Device | null>(null);
   const [sheetVisible, setSheetVisible] = useState(false);
   const [editDevice, setEditDevice] = useState<Device | null>(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -98,19 +100,20 @@ export default function DevicesScreen() {
   );
 
   const handleDelete = (device: Device) => {
-    Alert.alert(t.deleteDevice, t.deleteDeviceConfirm(device.name), [
-      { text: t.deleteCancel, style: "cancel" },
-      {
-        text: t.deleteConfirm,
-        style: "destructive",
-        onPress: async () => {
-          await Haptics.notificationAsync(
-            Haptics.NotificationFeedbackType.Success,
-          );
-          await deleteDevice(device.id);
-        },
-      },
-    ]);
+    setDeviceToDelete(device);
+    setModalVisible(true);
+  };
+
+  const confirmDelete = async () => {
+    if (!deviceToDelete) return;
+
+    setModalVisible(false);
+
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+    await deleteDevice(deviceToDelete.id);
+
+    setDeviceToDelete(null);
   };
 
   const onRefresh = async () => {
@@ -255,7 +258,6 @@ export default function DevicesScreen() {
               </View>
             </View>
 
-            {/* ── QUICK STATS 2×2 ────────────────────────────────── */}
             <View style={styles.statGrid}>
               <StatCard
                 icon="grid-outline"
@@ -265,14 +267,14 @@ export default function DevicesScreen() {
                 colors={themeColors}
               />
               <StatCard
-                icon="battery-charging-outline"
+                icon="battery-full-outline"
                 label={t.statBatteries}
                 value={totalBatt}
                 color={themeColors.foreground}
                 colors={themeColors}
               />
               <StatCard
-                icon="battery-full-outline"
+                icon="battery-charging-outline"
                 label={t.statReady}
                 value={charged}
                 color={themeColors.charged}
@@ -287,7 +289,6 @@ export default function DevicesScreen() {
               />
             </View>
 
-            {/* ── CATEGORY TILES (horizontal scroll) ─────────────── */}
             {catSummaries.length > 0 && (
               <ScrollView
                 horizontal
@@ -395,6 +396,21 @@ export default function DevicesScreen() {
           setSheetVisible(false);
           setEditDevice(null);
         }}
+      />
+
+      <YesNoModal
+        visible={modalVisible}
+        title={t.deleteDevice}
+        message={
+          deviceToDelete ? t.deleteDeviceConfirm(deviceToDelete.name) : ""
+        }
+        cancelText={t.deleteCancel}
+        confirmText={t.deleteConfirm}
+        onCancel={() => {
+          setModalVisible(false);
+          setDeviceToDelete(null);
+        }}
+        onConfirm={confirmDelete}
       />
     </View>
   );
