@@ -5,7 +5,7 @@ const colors = {
 
   tint: primary,
 
-  background: "#eeeeee",
+  background: "#f5f5f5",
   foreground: "#151515",
 
   card: "#ffffffef",
@@ -33,7 +33,7 @@ const colors = {
 
   // card borders
   cardBorderColor: "#c5c5c5",
-  cardBorderWidth: 1,
+  cardBorderWidth: 0.8,
 
   // battery level colors
   charged: "#00ce89",
@@ -41,7 +41,7 @@ const colors = {
   discharged: "#ff2d2d",
 
   surfaceElevated: "#fffffff4",
-  tabBar: "#ffffff",
+  tabBar: "#ffffff"
 };
 
 export default colors;
