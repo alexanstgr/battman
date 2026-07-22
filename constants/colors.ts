@@ -5,7 +5,7 @@ const colors = {
 
   tint: primary,
 
-  background: "#f5f5f5",
+  background: "#f4edeb",
   foreground: "#151515",
 
   card: "#ffffffef",

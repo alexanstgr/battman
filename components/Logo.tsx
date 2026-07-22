@@ -6,9 +6,10 @@ export default function Logo() {
     logo: {
       width: 200,
       height: 50,
+      marginLeft:10,
       resizeMode: "contain",
     },
   });
 
-  return <Image style={style.logo} source={require("../assets/logo.png")} />;
+  return <Image style={style.logo} source={require("../assets/battman.png")} />;
 }

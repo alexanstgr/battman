@@ -4,11 +4,21 @@
     "slug": "battman",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+
     "scheme": "battman",
+
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff",
+      "imageWidth": 578
+    },
+
     "updates": {
       "enabled": false
     },
+
     "android": {
       "package": "com.battman.alexanstgr",
       "adaptiveIcon": {
@@ -16,10 +26,8 @@
         "backgroundColor": "#ffffff"
       }
     },
+
     "plugins": [
-      "expo-font",
-      "@react-native-vector-icons/ionicons",
-      "expo-web-browser",
       [
         "expo-splash-screen",
         {
@@ -29,10 +37,11 @@
         }
       ]
     ],
+
     "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
+      "typedRoutes": true
     },
+
     "extra": {
       "eas": {
         "projectId": "01f17b9e-c863-4021-be3a-e7b9f0ad1866"
